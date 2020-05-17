@@ -13,7 +13,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 	data = malloc(sizeof(data_t));
 	if (!data)
 	{
-		fprintf(stderr,"Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(buffer, delims);
@@ -21,7 +21,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 		data->op = strdup(token);
 	else if (token)
 	{
-		fprintf(stderr,"L%d: : unknown instruction %s\n", ln, token);
+		fprintf(stderr, "L%d: : unknown instruction %s\n", ln, token);
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(NULL, delims);
@@ -29,7 +29,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 		data->arg = atoi(token);
 	else if (data->op && !strcmp(data->op, "push"))
 	{
-		fprintf(stderr,"L%d: usage: push integer\n", ln);
+		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	if (data->op)
