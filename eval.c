@@ -7,7 +7,7 @@
  */
 int eval(char *s, int n)
 {
-	int i, len;
+	int i, l;
 	instruction_t ops_f[] = {
 		{"push", push},
 		{"pall", pall},
@@ -23,12 +23,13 @@ int eval(char *s, int n)
 	}
 	if (n && s)
 	{
-		len = strlen(s);
-		while (len--)
+		l = strlen(s);
+
+		while (l--)
 		{
-			if (len == 0 && s[len] == '-')
-				continue;
-			else if (s[len] > '9' || s[len] < '0')
+			if (!l && s[l] == '-')
+				break;
+			if (s[l] > '9' || s[l] < '0')
 			{
 				return (0);/* entry not a number*/
 			}
