@@ -8,6 +8,11 @@
 int eval(char *s, int n)
 {
 	int i, len;
+	instruction_t ops_f[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}
+	};
 
 	for (i = 0; !n && ops_f[i].opcode; i++)
 	{
