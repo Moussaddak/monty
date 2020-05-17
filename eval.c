@@ -26,7 +26,7 @@ int eval(char *s, int n)
 		len = strlen(s);
 		while (len--)
 		{
-			if(len == 0 && s[len] == '-')
+			if (len == 0 && s[len] == '-')
 				continue;
 			else if (s[len] > '9' || s[len] < '0')
 			{
