@@ -19,7 +19,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 	token = strtok(buffer, delims);
 	if (eval(token, 0))
 		data->op = strdup(token);
-	else
+	else if (token)
 	{
 		printf("L%d: : unknown instruction %s\n", ln, token);
 		exit(EXIT_FAILURE);
@@ -27,11 +27,12 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 	token = strtok(NULL, delims);
 	if (eval(token, 1))
 		data->arg = atoi(token);
-	else if (!strcmp(data->op, "push"))
+	else if (data->op && !strcmp(data->op, "push"))
 	{
 		printf("L%d: usage: push integer\n", ln);
 		exit(EXIT_FAILURE);
 	}
-	run_op(data, h);
+	if (data->op)
+		run_op(data, h);
 	_free(data);
 }

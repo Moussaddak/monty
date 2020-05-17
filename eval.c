@@ -16,7 +16,7 @@ int eval(char *s, int n)
 
 	for (i = 0; !n && ops_f[i].opcode; i++)
 	{
-		if (!strcmp(s, ops_f[i].opcode))
+		if (s && !strcmp(s, ops_f[i].opcode))
 		{
 			return (1);/*correct entry*/
 		}
