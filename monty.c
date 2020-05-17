@@ -30,5 +30,6 @@ int main(int argc, char **argv)
 	}
 
 	fclose(fd);
+	free_dlistint(head);
 	return (EXIT_SUCCESS);
 }

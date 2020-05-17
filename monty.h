@@ -56,5 +56,6 @@ void run_op(data_t *data, stack_t **head);
 void parse(char *buffer, unsigned int ln, stack_t **h);
 void push(stack_t **h, data_t *d);
 void pall(stack_t **h, data_t *d __attribute__((unused)));
+void free_dlistint(stack_t *head);
 
 #endif
