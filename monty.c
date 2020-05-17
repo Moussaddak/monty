@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 	FILE *fd;
 	char buffer[MAX];
 	unsigned int line_number = 1;
+	stack_t *head = NULL;
 
 	if (argc != 2)
 	{
@@ -24,7 +25,7 @@ int main(int argc, char **argv)
 	}
 	while (fgets(buffer, MAX, fd) != NULL)
 	{
-		parse(buffer, line_number);
+		parse(buffer, line_number, &head);
 		line_number++;
 	}
 
