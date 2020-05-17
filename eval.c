@@ -26,12 +26,12 @@ int eval(char *s, int n)
 		len = strlen(s);
 		while (len--)
 		{
-			if (s[len] > '9' || s[len] < '0')
+			if(len == 0 && s[len] == '-')
+				continue;
+			else if (s[len] > '9' || s[len] < '0')
 			{
 				return (0);/* entry not a number*/
 			}
-			else if (len == 0 && s[len] == '-')
-				break;
 		}
 		return (1);/* entry is a number*/
 	}
