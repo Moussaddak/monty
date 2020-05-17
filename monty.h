@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stddef.h>
 #define MAX 1024
 
 /**
@@ -23,25 +22,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 /**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
- *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
- */
-typedef struct instruction_s
-{
-	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
-} instruction_t;
-
-instruction_t ops_f[] = {
-	{"push", push},
-	{"pall", pall},
-	{NULL, NULL}
-};
-/**
  * struct data_t - opcode and its argument
  * @op: the opcode
  * @arg: argument
@@ -53,14 +33,27 @@ typedef struct data_t
 	char *op;
 	int arg;
 } data_t;
+/**
+ * struct instruction_s - opcode and its function
+ * @opcode: the opcode
+ * @f: function to handle the opcode
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct instruction_s
+{
+	char *opcode;
+	void (*f)(stack_t **stack, data_t *d);
+} instruction_t;
 
-size_t pall(const stack_t *h);
-stack_t *push(stack_t **head, const int n);
+void print_dlistint(stack_t *h);
+stack_t *add_dnodeint(stack_t **head, const int n);
 int eval(char *s, int n);
 void _free(data_t *h);
-void run_op(data_t data, stack_t **head);
-void parse(char *buffer, unsigned int ln);
-
-
+void run_op(data_t *data, stack_t **head);
+void parse(char *buffer, unsigned int ln, stack_t **h);
+void push(stack_t **h, data_t *d);
+void pall(stack_t **h, data_t *d __attribute__((unused)));
 
 #endif
