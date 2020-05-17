@@ -2,22 +2,23 @@
 /**
  *run_op - execute operation
  *@data: package of data
- *@head: dlinked list
+ *@head: top of stack
  */
-void run_op(data_t data, stack_t **head)
+void run_op(data_t *data, stack_t **head)
 {
-	switch (data.op)
+	int i = 0;
+	instruction_t ops_f[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}
+	};
+	while (ops_f[i].opcode)
 	{
-
-	case "push":
-		push(head, data.arg);
-		break;
-
-	case "pall":
-		pall(*head);
-		break;
-
-	default:
-		break;
+		if (!strcmp(data->op, ops_f[i].opcode))
+		{
+			ops_f[i].f(head, data);
+			return;
+		}
+		i++;
 	}
 }
