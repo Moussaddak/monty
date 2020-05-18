@@ -23,6 +23,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 		data->op = NULL;
 	else
 	{
+		free_dlistint(*h);
 		fprintf(stderr, "L%d: : unknown instruction %s\n", ln, token);
 		exit(EXIT_FAILURE);
 	}
@@ -35,6 +36,7 @@ void parse(char *buffer, unsigned int ln, stack_t **h)
 		}
 		else if (!strcmp(data->op, "push"))
 		{
+			free_dlistint(*h), _free(data);
 			fprintf(stderr, "L%d: usage: push integer\n", ln);
 			exit(EXIT_FAILURE);
 		}
