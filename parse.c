@@ -17,7 +17,7 @@ void parse(char *buffer, data_t *d, stack_t **h)
 	else
 	{
 		fclose(d->fd);
-		fprintf(stderr, "L%d: : unknown instruction %s\n",
+		dprintf(STDERR_FILENO, "L%d: : unknown instruction %s\n",
 			d->line, token);
 		if (d)
 			free(d);
@@ -35,7 +35,8 @@ void parse(char *buffer, data_t *d, stack_t **h)
 		{
 			free(d->op);
 			fclose(d->fd);
-			fprintf(stderr, "L%d: usage: push integer\n", d->line);
+			dprintf(STDERR_FILENO, "L%d: usage: push integer\n",
+				d->line);
 			if (d)
 				free(d);
 			free_dlistint(*h);
@@ -43,8 +44,6 @@ void parse(char *buffer, data_t *d, stack_t **h)
 		}
 	}
 	if (d->op)
-	{
 		run_op(d, h);
-	}
 	free(d->op);
 }
