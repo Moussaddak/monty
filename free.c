@@ -8,7 +8,9 @@ void _free(data_t *h)
 	if (h->op)
 	{
 		free(h->op);
+		h->op = NULL;
 		free(h);
+		h = NULL;
 	}
 }
 /**

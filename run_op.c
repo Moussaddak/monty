@@ -12,7 +12,7 @@ void run_op(data_t *data, stack_t **head)
 		{"pall", pall},
 		{NULL, NULL}
 	};
-	while (ops_f[i].opcode)
+	while (data->op && ops_f[i].opcode)
 	{
 		if (!strcmp(data->op, ops_f[i].opcode))
 		{
