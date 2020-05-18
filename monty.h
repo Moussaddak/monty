@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #define MAX 1024
 
 /**
@@ -26,6 +25,8 @@ typedef struct stack_s
  * struct data_t - opcode and its argument
  * @op: the opcode
  * @arg: argument
+ * @fd: file descriptor
+ * @line: line number
  *
  *Description: opcode and its argument
  */
@@ -33,6 +34,8 @@ typedef struct data_t
 {
 	char *op;
 	int arg;
+	FILE *fd;
+	unsigned int line;
 } data_t;
 /**
  * struct instruction_s - opcode and its function
@@ -51,9 +54,8 @@ typedef struct instruction_s
 void print_dlistint(stack_t *h);
 stack_t *add_dnodeint(stack_t **head, const int n);
 int eval(char *s, int n);
-void _free(data_t *h);
 void run_op(data_t *data, stack_t **head);
-void parse(char *buffer, unsigned int ln, stack_t **h);
+void parse(char *buffer, data_t *d, stack_t **h);
 void push(stack_t **h, data_t *d);
 void pall(stack_t **h, data_t *d __attribute__((unused)));
 void free_dlistint(stack_t *head);

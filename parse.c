@@ -2,48 +2,49 @@
 /**
  * parse - parses line of input
  * @buffer: line of input to parse
- * @ln: line number being evaluated
+ * @d: data package
  * @h: top of the stack
  */
-void parse(char *buffer, unsigned int ln, stack_t **h)
+void parse(char *buffer, data_t *d, stack_t **h)
 {
 	char delims[] = " \t\n", *token;
-	data_t *data;
 
-	data = malloc(sizeof(data_t));
-	if (!data)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	token = strtok(buffer, delims);
 	if (eval(token, 0))
-		data->op = strdup(token);
+		d->op = strdup(token);
 	else if (!token)
-		data->op = NULL;
+		d->op = NULL;
 	else
 	{
+		fclose(d->fd);
+		fprintf(stderr, "L%d: : unknown instruction %s\n",
+			d->line, token);
+		if (d)
+			free(d);
 		free_dlistint(*h);
-		fprintf(stderr, "L%d: : unknown instruction %s\n", ln, token);
 		exit(EXIT_FAILURE);
 	}
-	if (data->op)
+	if (d->op)
 	{
 		token = strtok(NULL, delims);
 		if (eval(token, 1))
 		{
-			data->arg = atoi(token);
+			d->arg = atoi(token);
 		}
-		else if (!strcmp(data->op, "push"))
+		else if (!strcmp(d->op, "push"))
 		{
-			free_dlistint(*h), _free(data);
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
+			free(d->op);
+			fclose(d->fd);
+			fprintf(stderr, "L%d: usage: push integer\n", d->line);
+			if (d)
+				free(d);
+			free_dlistint(*h);
 			exit(EXIT_FAILURE);
 		}
 	}
-	if (data->op)
+	if (d->op)
 	{
-		run_op(data, h);
+		run_op(d, h);
 	}
-	_free(data);
+	free(d->op);
 }

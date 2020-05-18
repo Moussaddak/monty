@@ -13,6 +13,7 @@ int eval(char *s, int n)
 		{"pall", pall},
 		{NULL, NULL}
 	};
+
 	for (i = 0; !n && ops_f[i].opcode; i++)
 	{
 		if (s && !strcmp(s, ops_f[i].opcode))
