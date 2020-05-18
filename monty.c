@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *head = NULL;
 /**
  * main - entry point
  * @argc: number of args
@@ -9,7 +10,6 @@ int main(int argc, char **argv)
 {
 	char buffer[MAX];
 	data_t *data;
-	stack_t *head = NULL;
 
 	if (argc != 2)
 	{

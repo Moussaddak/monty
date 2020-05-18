@@ -21,6 +21,7 @@ typedef struct stack_s
 	struct stack_s *prev;
 	struct stack_s *next;
 } stack_t;
+extern stack_t *head;
 /**
  * struct data_t - opcode and its argument
  * @op: the opcode
@@ -48,21 +49,8 @@ typedef struct data_t
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
-} instruction_t;
-/**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
- *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
- */
-typedef struct instruction_s
-{
-	char *opcode;
 	void (*f)(stack_t **stack, data_t *d);
-} instruction_tt;
+} instruction_t;
 
 void print_dlistint(stack_t *h);
 stack_t *add_dnodeint(stack_t **head, const int n);

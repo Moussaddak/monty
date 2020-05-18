@@ -8,7 +8,7 @@
 int eval(char *s, int n)
 {
 	int i, l;
-	instruction_tt ops_f[] = {
+	instruction_t ops_f[] = {
 		{"push", push},
 		{"pall", pall},
 		{NULL, NULL}

@@ -7,7 +7,7 @@
 void run_op(data_t *data, stack_t **head)
 {
 	int i = 0;
-	instruction_tt ops_f[] = {
+	instruction_t ops_f[] = {
 		{"push", push},
 		{"pall", pall},
 		{NULL, NULL}
