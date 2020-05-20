@@ -61,5 +61,11 @@ void parse(char *buffer, data_t *d, stack_t **h);
 void push(stack_t **h, data_t *d);
 void pall(stack_t **h, data_t *d __attribute__((unused)));
 void free_dlistint(stack_t *head);
+void pint(stack_t **h, data_t *d);
+void pop(stack_t **h, data_t *d);
+void swap(stack_t **h, data_t *d);
+void add(stack_t **h, data_t *d);
+void swap(stack_t **h, data_t *d);
+void nop(stack_t **h, data_t *d);
 
 #endif
