@@ -17,7 +17,7 @@ void parse(char *buffer, data_t *d, stack_t **h)
 	else
 	{
 		fclose(d->fd);
-		dprintf(STDERR_FILENO, "L%d: : unknown instruction %s\n",
+		dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n",
 			d->line, token);
 		if (d)
 			free(d);
